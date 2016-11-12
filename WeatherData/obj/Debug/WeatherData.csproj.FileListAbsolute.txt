@@ -1,0 +1,6 @@
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\bin\Debug\WeatherData.exe.config
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\bin\Debug\WeatherData.exe
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\bin\Debug\WeatherData.pdb
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\obj\Debug\WeatherData.csprojResolveAssemblyReference.cache
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\obj\Debug\WeatherData.exe
+c:\users\brandon\documents\visual studio 2015\Projects\WeatherData\WeatherData\obj\Debug\WeatherData.pdb
