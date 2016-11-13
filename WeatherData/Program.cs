@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,6 @@ namespace WeatherData
 {
     class Program
     {
-
-        // Having these 3 objects just for testing purpose 
-        private static Position sydney = new Position { Latitude = -33.86, Longitude = 51.21};
-        private static Position melbourne = new Position { Latitude = -37.83, Longitude = 144.98};
-        private static Position adelaide = new Position { Latitude = -34.92, Longitude =  138.62 };
 
         static void Main(string[] args)
         {
@@ -23,40 +19,40 @@ namespace WeatherData
         {
             var positions = new List<Position>
             {
-                new Position() { Latitude = sydney.Latitude, Longitude = sydney.Longitude},
-                new Position() { Latitude = melbourne.Latitude, Longitude = melbourne.Longitude},
-                new Position() { Latitude = adelaide.Latitude, Longitude = adelaide.Longitude},
+                new Position() { Latitude = Helper.Sydney.Latitude, Longitude = Helper.Sydney.Longitude},
+                new Position() { Latitude = Helper.Melbourne.Latitude, Longitude = Helper.Melbourne.Longitude},
+                new Position() { Latitude = Helper.Adelaide.Latitude, Longitude = Helper.Adelaide.Longitude},
             };
 
             Weather weatherData;
-            foreach (var position in positions)
+            var exitCommand = "";
+            while (exitCommand != "exit")
             {
-                weatherData = getWeatherData(position, DateTime.UtcNow);
-                Console.WriteLine(weatherData);
-                Console.ReadLine();
+                foreach (var position in positions)
+                {
+                    weatherData = getWeatherData(position, DateTimeOffset.UtcNow);
+                    Console.WriteLine(weatherData);
+                }
+                exitCommand = Console.ReadLine();
             }
+        }
+
+        private static Weather getWeatherData(Position position, DateTimeOffset now)
+        {
+            var localTime = Helper.GetLocalDateTime(position.Latitude, position.Longitude, now);
+            var location = position.GetLocation();
+            position.GetElevation();
             
+            return new Weather() {
+                Location = location,
+                Position = position,
+                LocalTime = localTime,
+                Condition = position.GetCondition(),
+                Temperature = position.GetTemperature(),
+                Pressure = position.GetPressure(),
+                Humidity = position.GetHumidity()
+            };
         }
-
-        private static Weather getWeatherData(Position position, DateTime now)
-        {
-            DateTime localTime = GetLocalDateTime(position.Latitude, position.Longitude, now);
-
-            return null;
-        }
-
-        public static DateTime GetLocalDateTime(double latitude, double longitude, DateTime utcDate)
-        {
-            // Chekc the latitude and longitude to return the local date time
-            if (latitude == -33.86 && longitude == 51.21)
-            {
-                return utcDate;
-            }
-            if (latitude == -37.83 && longitude == 144.98)
-            {
-                return utcDate;
-            }
-            return utcDate;
-        }
+     
     }
 }
