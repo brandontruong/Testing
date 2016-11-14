@@ -12,10 +12,10 @@ namespace WeatherData
 
         static void Main(string[] args)
         {
-            simulation();
+            simulation( new WeatherService());
         }
 
-        private static void simulation()
+        private static void simulation(IWeatherService service)
         {
             var positions = new List<Position>
             {
@@ -30,29 +30,11 @@ namespace WeatherData
             {
                 foreach (var position in positions)
                 {
-                    weatherData = getWeatherData(position, DateTimeOffset.UtcNow);
+                    weatherData = service.getWeatherDataByPosition(position, DateTimeOffset.UtcNow);
                     Console.WriteLine(weatherData);
                 }
                 exitCommand = Console.ReadLine();
             }
         }
-
-        private static Weather getWeatherData(Position position, DateTimeOffset now)
-        {
-            var localTime = Helper.GetLocalDateTime(position.Latitude, position.Longitude, now);
-            var location = position.GetLocation();
-            position.GetElevation();
-            
-            return new Weather() {
-                Location = location,
-                Position = position,
-                LocalTime = localTime,
-                Condition = position.GetCondition(),
-                Temperature = position.GetTemperature(),
-                Pressure = position.GetPressure(),
-                Humidity = position.GetHumidity()
-            };
-        }
-     
     }
 }

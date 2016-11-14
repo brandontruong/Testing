@@ -20,7 +20,4 @@ namespace WeatherData
             return String.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}", Location, Position, LocalTime.FormatIso8601(), Condition, Temperature, Pressure, Humidity);
        }
     }
-
-    public enum Condition { Rain, Snow, Sunny };
-
 }

@@ -1,0 +1,8 @@
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\WeatherData.exe
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\WeatherData.pdb
+C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
