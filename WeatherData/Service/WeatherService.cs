@@ -163,7 +163,6 @@ namespace WeatherData
             return location;
         }
 
-
         public double getElevation(Position position)
         {
             double elevation = 0;
@@ -234,8 +233,8 @@ namespace WeatherData
         {
             //for now we just return random pressure value 
             Random random = new Random(DateTime.Now.Ticks.GetHashCode());
-            var maxNumber = 1500;
-            var minNumber = 0;
+            var maxNumber = 108.5;
+            var minNumber = 87;
             return Math.Round(random.NextDouble() * (maxNumber - minNumber) + minNumber, 1);
         }
 
