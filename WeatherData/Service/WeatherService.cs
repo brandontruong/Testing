@@ -8,7 +8,7 @@ namespace WeatherData
 {
     public class WeatherService : IWeatherService
     {
-        public Weather getWeatherDataByPosition(Position position, DateTimeOffset time)
+        public Weather getWeatherDataByPosition(Position position)
         {
             //position.Elevation = getElevation(position);
             //return new Weather()
@@ -31,7 +31,7 @@ namespace WeatherData
                 }
             };
 
-            Task[] taskArray = new Task[6];
+            Task[] taskArray = new Task[5];
 
             // Run the task getting the Location
             taskArray[0] = Task.Factory.StartNew(
@@ -44,6 +44,9 @@ namespace WeatherData
                }).ContinueWith(task =>
                {
                    result.Location = task.Result.Location;
+
+                   // getting Localtime based on location
+                   result.LocalTime = getCurrentLocalDateTimeByLocation(result.Location);
                });
 
             // Run the task getting the Elevation to fulfill the Position
@@ -59,21 +62,8 @@ namespace WeatherData
                    result.Position.Elevation = task.Result.Elevation;
                });
 
-            // Run the task getting Localtime
-            taskArray[2] = Task.Factory.StartNew(
-               () =>
-               {
-                   return new
-                   {
-                       LocalTime = getLocalDateTime(position, time)
-                   };
-               }).ContinueWith(task =>
-               {
-                   result.LocalTime = task.Result.LocalTime;
-               });
-
             // Run the task getting Condition and Temperature
-            taskArray[3] = Task.Factory.StartNew(
+            taskArray[2] = Task.Factory.StartNew(
                 () =>
                 {
                     var condition = getCondition(position);
@@ -82,7 +72,8 @@ namespace WeatherData
                     // Let's assume the condition will be snowy if the temperature is below 0 degree
                     // If there are more logics, it should be checking at the point in time.
                     // Lets assume there is only 1 relationship between the temperature and condition
-                    if (temperature.StartsWith("-")) {
+                    if (temperature.StartsWith("-"))
+                    {
                         condition = Condition.Snow;
                     }
                     else
@@ -106,7 +97,7 @@ namespace WeatherData
                 });
 
             // Run the task getting Pressure
-            taskArray[4] = Task.Factory.StartNew(
+            taskArray[3] = Task.Factory.StartNew(
                () =>
                {
                    return new
@@ -119,7 +110,7 @@ namespace WeatherData
                });
 
             // Run the task getting Pressure
-            taskArray[5] = Task.Factory.StartNew(
+            taskArray[4] = Task.Factory.StartNew(
               () =>
               {
                   return new
@@ -210,23 +201,12 @@ namespace WeatherData
             return (double)random.Next(0, 100);
         }
 
-        public DateTimeOffset getLocalDateTime(Position position, DateTimeOffset utcDate)
+        public DateTimeOffset getCurrentLocalDateTimeByLocation(string location)
         {
-            // Check the latitude and longitude to return the local date time
-            // lets assume for Sydney local time is the UTC time, Melbourne will run 1 hour behind and Adelaide runs 2 hours behind
-            if (position.Latitude == Helper.Sydney.Latitude && position.Longitude == Helper.Sydney.Longitude)
-            {
-                return utcDate;
-            }
-            if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
-            {
-                return utcDate.AddHours(-1);
-            }
-            if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
-            {
-                return utcDate.AddHours(-2);
-            }
-            return utcDate;
+            // if we're using real web services like googleAPI or yahooApi, latitude and longtitude should be enough to determine where the location is and the local time is
+            // In our case, I just gonna use the location name (city's name) to achieve the local time
+            var timeZoneInfo = TimeZoneInfo.GetSystemTimeZones().First(tz => tz.DisplayName.Contains(location));
+            return TimeZoneInfo.ConvertTime(DateTimeOffset.Now, timeZoneInfo);
         }
 
         #region Dispose

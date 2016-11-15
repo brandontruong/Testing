@@ -12,7 +12,7 @@ namespace WeatherData
 
         static void Main(string[] args)
         {
-            simulation( new WeatherService());
+            simulation(new WeatherService());
         }
 
         private static void simulation(IWeatherService service)
@@ -30,7 +30,7 @@ namespace WeatherData
             {
                 foreach (var position in positions)
                 {
-                    weatherData = service.getWeatherDataByPosition(position, DateTimeOffset.UtcNow);
+                    weatherData = service.getWeatherDataByPosition(position);
                     Console.WriteLine(weatherData);
                 }
                 exitCommand = Console.ReadLine();

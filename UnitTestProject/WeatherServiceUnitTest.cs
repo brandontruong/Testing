@@ -13,13 +13,14 @@ namespace UnitTestProject
         public void testGetWeatherDataByPositionMethod()
         {
             // arrange  
-            var sydneyPosition = new Position() {
+            var sydneyPosition = new Position()
+            {
                 Longitude = Helper.Sydney.Longitude,
                 Latitude = Helper.Sydney.Latitude,
             };
-            
+
             // act  
-            var weatherData = service.getWeatherDataByPosition(sydneyPosition, DateTimeOffset.Now);
+            var weatherData = service.getWeatherDataByPosition(sydneyPosition);
 
             // assert  
             string expectedLocation = "Sydney";

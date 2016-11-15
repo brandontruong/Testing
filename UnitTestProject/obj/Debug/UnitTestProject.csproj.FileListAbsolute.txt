@@ -6,3 +6,11 @@ C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\obj\Debug\UnitTest
 C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\WeatherData.exe
 C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\bin\Debug\WeatherData.pdb
 C:\Users\brandon\Documents\GitHub\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\WeatherData.exe
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\WeatherData.pdb
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.pdb
