@@ -26,5 +26,24 @@ namespace UnitTestProject
             string expectedLocation = "Sydney";
             Assert.AreEqual(expectedLocation, weatherData.Location, "Location should be Sydney");
         }
+
+        [TestMethod]
+        public void testGetConditionMethod()
+        {
+            // arrange  
+            var sydneyPosition = new Position()
+            {
+                Longitude = Helper.Sydney.Longitude,
+                Latitude = Helper.Sydney.Latitude,
+            };
+            var weatherData = service.getWeatherDataByPosition(sydneyPosition);
+
+            // act  
+            weatherData.Temperature = "-10";
+
+            // assert  
+            Condition expectedCondition = Condition.Snow;
+            Assert.AreEqual(expectedCondition, weatherData.Condition, "Condition should be Snow");
+        }
     }
 }

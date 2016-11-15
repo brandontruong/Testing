@@ -6,7 +6,7 @@ namespace WeatherData
     {
         Weather getWeatherDataByPosition(Position position);
         string getLocation(Position position);
-        string getElevation(Position position);
+        double getElevation(Position position);
         Condition getCondition(Position position);
         string getTemperature(Position position);
         double getPressure(Position position);

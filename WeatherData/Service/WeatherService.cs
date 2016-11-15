@@ -10,18 +10,6 @@ namespace WeatherData
     {
         public Weather getWeatherDataByPosition(Position position)
         {
-            //position.Elevation = getElevation(position);
-            //return new Weather()
-            //{
-            //    Location = getLocation(position),
-            //    Position = position,
-            //    LocalTime = getLocalDateTime(position, time),
-            //    Condition = getCondition(position),
-            //    Temperature = getTemperature(position),
-            //    Pressure = getPressure(position),
-            //    Humidity = getHumidity(position)
-            //};
-
             Weather result = new Weather()
             {
                 Position = new Position()
@@ -66,7 +54,7 @@ namespace WeatherData
             taskArray[2] = Task.Factory.StartNew(
                 () =>
                 {
-                    var condition = getCondition(position);
+                    Condition condition;
                     var temperature = getTemperature(position);
 
                     // Let's assume the condition will be snowy if the temperature is below 0 degree
@@ -79,6 +67,7 @@ namespace WeatherData
                     else
                     {
                         // if the temperature is greater than zero, the condition would be either sunny or rainy
+                        condition = getCondition(position);
                         while (condition == Condition.Snow)
                         {
                             condition = getCondition(position);
@@ -129,39 +118,95 @@ namespace WeatherData
 
         public string getLocation(Position position)
         {
-            // Check the latitude and longitude to return the local date time
-            // lets assume for Sydney local time is the UTC time, Melbourne will run 1 hour behind and Adelaide runs 2 hours behind
+            // based on the latitude and longtitude, return the location name
+            var location = "";
             if (position.Latitude == Helper.Sydney.Latitude && position.Longitude == Helper.Sydney.Longitude)
             {
-                return "Sydney";
+                location = "Sydney";
             }
             if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
             {
-                return "Melbourne";
+                location = "Melbourne";
             }
             if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
             {
-                return "Adelaide";
+                location = "Adelaide";
             }
-            return "Sydney";
+            if (position.Latitude == Helper.Alaska.Latitude && position.Longitude == Helper.Alaska.Longitude)
+            {
+                location = "Alaska";
+            }
+            if (position.Latitude == Helper.Bogota.Latitude && position.Longitude == Helper.Bogota.Longitude)
+            {
+                location = "Bogota";
+            }
+            if (position.Latitude == Helper.Hanoi.Latitude && position.Longitude == Helper.Hanoi.Longitude)
+            {
+                location = "Hanoi";
+            }
+            if (position.Latitude == Helper.Hawaii.Latitude && position.Longitude == Helper.Hawaii.Longitude)
+            {
+                location = "Hawaii";
+            }
+            if (position.Latitude == Helper.Mumbai.Latitude && position.Longitude == Helper.Mumbai.Longitude)
+            {
+                location = "Mumbai";
+            }
+            if (position.Latitude == Helper.NewDelhi.Latitude && position.Longitude == Helper.NewDelhi.Longitude)
+            {
+                location = "New Delhi";
+            }
+            if (position.Latitude == Helper.Tokyo.Latitude && position.Longitude == Helper.Tokyo.Longitude)
+            {
+                location = "Tokyo";
+            }
+            return location;
         }
 
 
-        public string getElevation(Position position)
+        public double getElevation(Position position)
         {
-            var elevation = "";
+            double elevation = 0;
             // lets assume the elevation doenst change over the time based on Latitude and Longitude
             if (position.Latitude == Helper.Sydney.Latitude && position.Longitude == Helper.Sydney.Longitude)
             {
-                elevation = "39";
+                elevation = 39;
             }
-            if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
+            else if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
             {
-                elevation = "7";
+                elevation = 7;
             }
-            if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
+            else if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
             {
-                elevation = "48";
+                elevation = 48;
+            }
+            else if (position.Latitude == Helper.Alaska.Latitude && position.Longitude == Helper.Alaska.Longitude)
+            {
+                elevation = 6190.5;
+            }
+            else if (position.Latitude == Helper.Bogota.Latitude && position.Longitude == Helper.Bogota.Longitude)
+            {
+                elevation = 2644;
+            }
+            else if (position.Latitude == Helper.Hanoi.Latitude && position.Longitude == Helper.Hanoi.Longitude)
+            {
+                elevation = 10;
+            }
+            else if (position.Latitude == Helper.Hawaii.Latitude && position.Longitude == Helper.Hawaii.Longitude)
+            {
+                elevation = 4205;
+            }
+            else if (position.Latitude == Helper.Mumbai.Latitude && position.Longitude == Helper.Mumbai.Longitude)
+            {
+                elevation = 14;
+            }
+            else if (position.Latitude == Helper.NewDelhi.Latitude && position.Longitude == Helper.NewDelhi.Longitude)
+            {
+                elevation = 216;
+            }
+            else if (position.Latitude == Helper.Tokyo.Latitude && position.Longitude == Helper.Tokyo.Longitude)
+            {
+                elevation = 40;
             }
             return elevation;
         }
@@ -170,7 +215,7 @@ namespace WeatherData
         {
             //for now we just return random condition 
             Array values = Enum.GetValues(typeof(Condition));
-            Random random = new Random();
+            Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             return (Condition)values.GetValue(random.Next(values.Length));
         }
 
@@ -178,7 +223,7 @@ namespace WeatherData
         {
             //Hottest temperature recorded was 56.7 °C and coldest was −89.2 °C
             //for now we just return random number between 56.7 and -89.2
-            Random random = new Random();
+            Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             var maxNumber = 56.7;
             var minNumber = -89.2;
             var randomTemperature = Math.Round(random.NextDouble() * (maxNumber - minNumber) + minNumber, 1);
@@ -188,7 +233,7 @@ namespace WeatherData
         public double getPressure(Position position)
         {
             //for now we just return random pressure value 
-            Random random = new Random();
+            Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             var maxNumber = 1500;
             var minNumber = 0;
             return Math.Round(random.NextDouble() * (maxNumber - minNumber) + minNumber, 1);
@@ -197,7 +242,7 @@ namespace WeatherData
         public double getHumidity(Position position)
         {
             //for now we just return random number 
-            Random random = new Random();
+            Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             return (double)random.Next(0, 100);
         }
 

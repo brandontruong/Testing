@@ -11,8 +11,39 @@ namespace WeatherData
         public string Location { get; set; }
         public Position Position { get; set; }
         public DateTimeOffset LocalTime { get; set; }
-        public Condition Condition { get; set; }
-        public string Temperature { get; set; }
+
+        private Condition condition;
+        public Condition Condition {
+            get
+            {
+                if (temperature.StartsWith("-"))
+                {
+                    condition = Condition.Snow;
+                }
+                return condition;
+            }
+            set
+            {
+                condition = value;
+            }
+        }
+
+        
+        private string temperature;
+        public string Temperature {
+            get
+            {
+                return temperature;
+            }
+            set
+            {
+                temperature = value;
+                if (value.StartsWith("-"))
+                {
+                    Condition = Condition.Snow;
+                }
+            }
+        }
         public double Pressure { get; set; }
         public double Humidity { get; set; }
         public override string ToString()
