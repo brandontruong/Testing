@@ -1,0 +1,11 @@
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\WeatherData.exe.config
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\WeatherDataModel.mdf
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\WeatherDataModel_log.ldf
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\WeatherData.exe
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\WeatherData.pdb
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\EntityFramework.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\EntityFramework.xml
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\obj\Release\WeatherData.exe
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\obj\Release\WeatherData.pdb

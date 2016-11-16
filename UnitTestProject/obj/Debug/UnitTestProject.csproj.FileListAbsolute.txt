@@ -14,3 +14,7 @@ C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\W
 C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.dll
 C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\WeatherDataModel.mdf
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\WeatherDataModel_log.ldf
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\UnitTestProject\bin\Debug\EntityFramework.xml

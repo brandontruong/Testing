@@ -12,7 +12,7 @@ namespace WeatherData
 
         static void Main(string[] args)
         {
-            simulation(new WeatherService());
+            simulation(new WeatherService(new WeatherDataModel()));
         }
 
         private static void simulation(IWeatherService service)

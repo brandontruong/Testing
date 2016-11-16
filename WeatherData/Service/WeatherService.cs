@@ -8,8 +8,18 @@ namespace WeatherData
 {
     public class WeatherService : IWeatherService
     {
+        private IWeatherDataModel _weatherDataModelContext;
+        IList<LocationData> _locationData;
+        public WeatherService(IWeatherDataModel weatherDataModelContext)
+        {
+            _weatherDataModelContext = weatherDataModelContext;
+
+            _locationData = _weatherDataModelContext.LocationDatas.ToList();
+        }
+
         public Weather getWeatherDataByPosition(Position position)
         {
+
             Weather result = new Weather()
             {
                 Position = new Position()
@@ -119,100 +129,21 @@ namespace WeatherData
         public string getLocation(Position position)
         {
             // based on the latitude and longtitude, return the location name
-            var location = "";
-            if (position.Latitude == Helper.Sydney.Latitude && position.Longitude == Helper.Sydney.Longitude)
-            {
-                location = "Sydney";
-            }
-            if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
-            {
-                location = "Melbourne";
-            }
-            if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
-            {
-                location = "Adelaide";
-            }
-            if (position.Latitude == Helper.Alaska.Latitude && position.Longitude == Helper.Alaska.Longitude)
-            {
-                location = "Alaska";
-            }
-            if (position.Latitude == Helper.Bogota.Latitude && position.Longitude == Helper.Bogota.Longitude)
-            {
-                location = "Bogota";
-            }
-            if (position.Latitude == Helper.Hanoi.Latitude && position.Longitude == Helper.Hanoi.Longitude)
-            {
-                location = "Hanoi";
-            }
-            if (position.Latitude == Helper.Hawaii.Latitude && position.Longitude == Helper.Hawaii.Longitude)
-            {
-                location = "Hawaii";
-            }
-            if (position.Latitude == Helper.Mumbai.Latitude && position.Longitude == Helper.Mumbai.Longitude)
-            {
-                location = "Mumbai";
-            }
-            if (position.Latitude == Helper.NewDelhi.Latitude && position.Longitude == Helper.NewDelhi.Longitude)
-            {
-                location = "New Delhi";
-            }
-            if (position.Latitude == Helper.Tokyo.Latitude && position.Longitude == Helper.Tokyo.Longitude)
-            {
-                location = "Tokyo";
-            }
-            return location;
+            var locationData = _locationData.FirstOrDefault(l => l.Latitude == position.Latitude && l.Longitude == position.Longitude);
+            return (locationData != null) ? locationData.LocationName : string.Empty;
         }
 
         public double getElevation(Position position)
         {
-            double elevation = 0;
-            // lets assume the elevation doenst change over the time based on Latitude and Longitude
-            if (position.Latitude == Helper.Sydney.Latitude && position.Longitude == Helper.Sydney.Longitude)
-            {
-                elevation = 39;
-            }
-            else if (position.Latitude == Helper.Melbourne.Latitude && position.Longitude == Helper.Melbourne.Longitude)
-            {
-                elevation = 7;
-            }
-            else if (position.Latitude == Helper.Adelaide.Latitude && position.Longitude == Helper.Adelaide.Longitude)
-            {
-                elevation = 48;
-            }
-            else if (position.Latitude == Helper.Alaska.Latitude && position.Longitude == Helper.Alaska.Longitude)
-            {
-                elevation = 6190.5;
-            }
-            else if (position.Latitude == Helper.Bogota.Latitude && position.Longitude == Helper.Bogota.Longitude)
-            {
-                elevation = 2644;
-            }
-            else if (position.Latitude == Helper.Hanoi.Latitude && position.Longitude == Helper.Hanoi.Longitude)
-            {
-                elevation = 10;
-            }
-            else if (position.Latitude == Helper.Hawaii.Latitude && position.Longitude == Helper.Hawaii.Longitude)
-            {
-                elevation = 4205;
-            }
-            else if (position.Latitude == Helper.Mumbai.Latitude && position.Longitude == Helper.Mumbai.Longitude)
-            {
-                elevation = 14;
-            }
-            else if (position.Latitude == Helper.NewDelhi.Latitude && position.Longitude == Helper.NewDelhi.Longitude)
-            {
-                elevation = 216;
-            }
-            else if (position.Latitude == Helper.Tokyo.Latitude && position.Longitude == Helper.Tokyo.Longitude)
-            {
-                elevation = 40;
-            }
-            return elevation;
+            // based on the latitude and longtitude, return the location name
+            var locationData = _locationData.FirstOrDefault(l => l.Latitude == position.Latitude && l.Longitude == position.Longitude);
+            return (locationData != null) ? locationData.Elevation : 0;
         }
 
         public Condition getCondition(Position position)
         {
-            //for now we just return random condition 
+            // In real life, it would require the position to retrieve the temperature via web services like OpenWeatherMap, Yahoo weather API or Google weather API
+            // Because we're stimulating the weather therefore I am just generating random condition 
             Array values = Enum.GetValues(typeof(Condition));
             Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             return (Condition)values.GetValue(random.Next(values.Length));
@@ -220,8 +151,10 @@ namespace WeatherData
 
         public string getTemperature(Position position)
         {
-            //Hottest temperature recorded was 56.7 °C and coldest was −89.2 °C
-            //for now we just return random number between 56.7 and -89.2
+            // In real life, it would require the position to retrieve the temperature via web services like OpenWeatherMap, Yahoo weather API or Google weather API
+            // Because we're stimulating the weather therefore I am just generating random number 
+            // Hottest temperature recorded was 56.7 °C and coldest was −89.2 °C
+
             Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             var maxNumber = 56.7;
             var minNumber = -89.2;
@@ -231,7 +164,10 @@ namespace WeatherData
 
         public double getPressure(Position position)
         {
-            //for now we just return random pressure value 
+            // In real life, it would require the position to retrieve the temperature via web services like OpenWeatherMap, Yahoo weather API or Google weather API
+            // Because we're stimulating the weather therefore I am just generating random number 
+            // Highest Pressure recorded was 108.5kPa and lowest Pressure was 87kPa
+
             Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             var maxNumber = 108.5;
             var minNumber = 87;
@@ -240,7 +176,9 @@ namespace WeatherData
 
         public double getHumidity(Position position)
         {
-            //for now we just return random number 
+            // In real life, it would require the position to retrieve the temperature via web services like OpenWeatherMap, Yahoo weather API or Google weather API
+            // Because we're stimulating the weather therefore I am just generating random number 
+
             Random random = new Random(DateTime.Now.Ticks.GetHashCode());
             return (double)random.Next(0, 100);
         }

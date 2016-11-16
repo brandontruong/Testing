@@ -7,11 +7,23 @@ namespace UnitTestProject
     [TestClass]
     public class WeatherServiceUnitTest
     {
-        IWeatherService service = new WeatherService();
+
+        private IWeatherDataModel mock;
+        private IWeatherService service;
+
+        [TestInitialize()]
+        public void Initialize()
+        {
+            mock = new WeatherDataModelMock();
+            LoadMockData(mock);
+            service = new WeatherService(mock);
+        }
+
 
         [TestMethod]
         public void testGetWeatherDataByPositionMethod()
         {
+
             // arrange  
             var sydneyPosition = new Position()
             {
@@ -82,6 +94,17 @@ namespace UnitTestProject
             // assert  
             Condition expectedCondition = Condition.Snow;
             Assert.AreEqual(expectedCondition, weatherData.Condition, "Condition should be Snow when the temperature is less than zero");
+        }
+
+        private void LoadMockData(IWeatherDataModel mock)
+        {
+            mock.LocationDatas.Add(new LocationData()
+            {
+                LocationName = "Sydney",
+                Latitude = -33.86,
+                Longitude = 151.21,
+                Elevation = 39
+            });
         }
     }
 }

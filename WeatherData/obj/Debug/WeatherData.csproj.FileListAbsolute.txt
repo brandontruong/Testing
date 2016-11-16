@@ -15,3 +15,10 @@ C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\obj\Debug\Weath
 C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\WeatherData.exe
 C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\WeatherData.pdb
 C:\Users\brandon\Documents\GitHub\WeatherData\WeatherData\obj\Debug\WeatherData.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\WeatherDataModel.mdf
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\WeatherDataModel_log.ldf
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Source\Workspaces\WeatherData\WeatherData\obj\Debug\WeatherData.csprojResolveAssemblyReference.cache
